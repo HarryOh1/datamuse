@@ -4,8 +4,7 @@ const inputField = document.querySelector('#input');
 const submit = document.querySelector('#submit');
 const responseField = document.querySelector('#responseField');
 
-const getSuggestions = (e) => {
-  e.preventDefault();
+const getSuggestions = () => {
   const wordQuery = inputField.value;
   const endpoint = `${url}${wordQuery}`;
   console.log(endpoint);
@@ -23,9 +22,16 @@ const getSuggestions = (e) => {
       }
     )
     .then((jsonResponse) => {
-      console.log(jsonResponse);
-      renderRawResponse(jsonResponse);
+      renderResponse(jsonResponse);
     });
 };
 
-submit.addEventListener('click', getSuggestions);
+const displaySuggestions = (event) => {
+  event.preventDefault();
+  while (responseField.firstChild) {
+    responseField.removeChild(responseField.firstChild);
+  }
+  getSuggestions();
+};
+
+submit.addEventListener('click', displaySuggestions);

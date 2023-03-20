@@ -22,6 +22,11 @@ h1 {
   margin: 0;
 }
 
+li {
+  text-align: center;
+  margin: 0 25%;
+}
+
 .logo {
   width: 110px;
   height: 28px;
